@@ -1,0 +1,46 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: test-appset
+  namespace: argocd
+spec:
+  generators:
+  - matrix:
+      generators:
+      - clusters: {}
+      - pullRequest:
+          github:
+            # The GitHub organization or user.
+            owner: aym3ntn
+            # The Github repository
+            repo: argocd-pullrequest-generator-test
+            # Labels is used to filter the PRs that you want to target. (optional)
+            labels:
+            - argocd-label
+          requeueAfterSeconds: 1800
+
+  template:
+    metadata:
+      name: 'hellos3-{{name}}'
+    spec:
+      destination:
+        namespace: 'test-{{branch_slug}}'
+        server: '{{server}}'
+      source:
+        path: ./app
+        repoURL: >-
+          https://github.com/Aym3nTN/argocd-pullrequest-generator-test.git
+        targetRevision: main
+      project: firecamp
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+        retry:
+          limit: 3
+          backoff:
+            duration: 5s
+            maxDuration: 3m0s
+            factor: 2
