@@ -21,7 +21,7 @@ spec:
 
   template:
     metadata:
-      name: 'hellos3-{{name}}'
+      name: 'hellos3-{{name}}-{{branch_slug}}'
     spec:
       destination:
         namespace: 'test-{{branch_slug}}'
