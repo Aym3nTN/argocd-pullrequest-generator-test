@@ -21,7 +21,7 @@ spec:
             
             labels:
             - argocd-label
-          requeueAfterSeconds: 15
+          requeueAfterSeconds: 180
 
   template:
     metadata:
