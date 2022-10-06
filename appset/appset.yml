@@ -13,8 +13,12 @@ spec:
             # The GitHub organization or user.
             owner: aym3ntn
             # The Github repository
+            tokenRef:
+              secretName: github-token
+              key: token
             repo: argocd-pullrequest-generator-test
             # Labels is used to filter the PRs that you want to target. (optional)
+            
             labels:
             - argocd-label
           requeueAfterSeconds: 1800
