@@ -31,7 +31,7 @@ spec:
         repoURL: >-
           https://github.com/Aym3nTN/argocd-pullrequest-generator-test.git
         targetRevision: main
-      project: firecamp
+      project: default
       syncPolicy:
         automated:
           prune: true
