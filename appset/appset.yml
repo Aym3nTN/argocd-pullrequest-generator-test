@@ -21,8 +21,8 @@ spec:
             
             labels:
             - argocd-label
-        requeueAfterSeconds: 15
-        
+          requeueAfterSeconds: 15
+
   template:
     metadata:
       name: 'hellos3-{{name}}-{{branch_slug}}'
