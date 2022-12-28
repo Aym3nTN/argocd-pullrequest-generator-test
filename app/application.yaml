@@ -4,7 +4,7 @@ metadata:
   name: aymen-2
 spec:
   destination:
-    namespace: my-app-2
+    namespace: test-nginx
     server: 'https://kubernetes.default.svc'
   source:
     path: app2/
