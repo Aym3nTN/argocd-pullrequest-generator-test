@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: Aymen-2
+spec:
+  destination:
+    namespace: my-app-2
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: app2/
+    repoURL: 'https://github.com/Aym3nTN/argocd-pullrequest-generator-test'
+    targetRevision: HEAD
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true
