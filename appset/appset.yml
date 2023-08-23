@@ -4,6 +4,7 @@ metadata:
   name: test-appset
   namespace: argocd
 spec:
+  goTemplate: true
   generators:
   - matrix:
       generators:
@@ -13,9 +14,9 @@ spec:
             # The GitHub organization or user.
             owner: aym3ntn
             # The Github repository
-            tokenRef:
-              secretName: github-token
-              key: token
+            # tokenRef:
+            #   secretName: github-token
+            #   key: token
             repo: argocd-pullrequest-generator-test
             # Labels is used to filter the PRs that you want to target. (optional)
             
@@ -25,11 +26,13 @@ spec:
 
   template:
     metadata:
-      name: 'hellos3-{{name}}-{{branch_slug}}'
+      name: 'hellos3-{{.name}}-{{.branch_slug}}'
+      annotations:
+        sanitize: '{{ .branch | normalize }}'
     spec:
       destination:
-        namespace: 'test-{{branch_slug}}'
-        server: '{{server}}'
+        namespace: 'test-{{.branch_slug}}'
+        server: '{{.server}}'
       source:
         path: ./app
         repoURL: >-
