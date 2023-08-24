@@ -7,7 +7,7 @@ spec:
     namespace: argocd
     server: 'https://kubernetes.default.svc'
   source:
-    path: app2/
+    path: app/
     repoURL: 'https://github.com/Aym3nTN/argocd-pullrequest-generator-test'
     targetRevision: HEAD
   project: default

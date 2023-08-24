@@ -28,7 +28,9 @@ spec:
     metadata:
       name: 'hellos3-{{.name}}-{{.branch_slug}}'
       annotations:
+        branch: '{{ .branch }}'
         sanitize: '{{ .branch | normalize }}'
+        slugify: '{{ .branch | slugify 48 false }}'
     spec:
       destination:
         namespace: 'test-{{.branch_slug}}'
